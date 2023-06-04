@@ -1,3 +1,8 @@
+var InspectElement = document.createElement("script");
+InspectElement.src = "https://cdn.jsdelivr.net/gh/PlOszukiwaczDEV/Bookmarklets@master/InspectElement.js";
+InspectElement.onload = alert("Loaded DevTools");
+document.head.appendChild(InspectElement);
+
 (() => {
     function downloadSiteInfo(filename, text) {
         let elem = document.createElement('a');
@@ -87,7 +92,7 @@
 `.trim();
 
     var javascript = `
-	var snowlord_variables = {
+	var variables = {
 		listeners: [],
 		loaded: true,
 		showing: true,
@@ -110,7 +115,7 @@
 			capture = false;
 		}
 		this.oldAddEventListener(type, handler, capture);
-		snowlord_variables.listeners.push({
+		variables.listeners.push({
 			type : type,
 			func : handler,
 			capture : capture,
@@ -120,16 +125,16 @@
 	}
 
 	function disableListener(index) {
-		var elem = snowlord_variables.listeners[index].elem;
-		var type = snowlord_variables.listeners[index].type;
-		var func = snowlord_variables.listeners[index].func;
-		snowlord_variables.listeners[index].enabled = false;
-		var capture = snowlord_variables.listeners[index].capture;
+		var elem = variables.listeners[index].elem;
+		var type = variables.listeners[index].type;
+		var func = variables.listeners[index].func;
+		variables.listeners[index].enabled = false;
+		var capture = variables.listeners[index].capture;
 		elem.removeEventListener(type, func, capture);
 	}
 
 	function toggleListener(index) {
-		if (snowlord_variables.listeners[index].enabled) {
+		if (variables.listeners[index].enabled) {
 			disableListener(index);
 		} else {
 			enableListener(index);
@@ -137,18 +142,18 @@
 	}
 
 	function enableListener(index) {
-		var elem = snowlord_variables.listeners[index].elem;
-		var type = snowlord_variables.listeners[index].type;
-		var func = snowlord_variables.listeners[index].func;
-		var capture = snowlord_variables.listeners[index].capture;
-		snowlord_variables.listeners[index].enabled = true;
+		var elem = variables.listeners[index].elem;
+		var type = variables.listeners[index].type;
+		var func = variables.listeners[index].func;
+		var capture = variables.listeners[index].capture;
+		variables.listeners[index].enabled = true;
 		elem.oldAddEventListener(type, elem, func, capture);
 	}
 	*/
 	console.log = function(msg) {
 		var c = document.getElementsByClassName("devConsole-container-body-console-text")[0];
 		var cHeight = 10;
-		if (snowlord_variables.hijackFunctions && c) {
+		if (variables.hijackFunctions && c) {
 			try {
 				msg = msg.replace(/(\?\:\\r\\n|\\r|\\n)/g, "<br>");
 			} catch(e) {}
@@ -168,18 +173,18 @@
 			}
 			document.getElementById("devConsole-container-body-console-input").scrollIntoView();
 		} else {
-			snowlord_variables.log(msg);
+			variables.log(msg);
 		}
 	}
 
 	console.error = function(msg) {
 		var c = document.getElementsByClassName("devConsole-container-body-console-text")[0];
 		var cHeight = 10;
-		if (snowlord_variables.hijackFunctions && c) {
+		if (variables.hijackFunctions && c) {
 			try {
 				msg = msg.replace(/(\?\:\\r\\n|\\r|\\n)/g, "<br>");
 			} catch(e) {}
-			if (snowlord_variables.hideLogs) {
+			if (variables.hideLogs) {
                 // Stop logging
 			} else if (typeof(msg) == "number") {
 				c.innerHTML += '<div class="devConsole-container-body-console-messages"><span style="color: #bababa; user-select: none;">` + "\u274C" + `' + new Date().toLocaleTimeString().split(" ")[0] + '</span><span style="color: #0015ff;"> ' + msg +'</span></div>';	
@@ -197,18 +202,18 @@
 			}
 			document.getElementById("devConsole-container-body-console-input").scrollIntoView();
 		} else {
-			snowlord_variables.log(msg);
+			variables.log(msg);
 		}
 	}
 	
 	console.warn = function(msg) {
 		var c = document.getElementsByClassName("devConsole-container-body-console-text")[0];
 		var cHeight = 10;
-		if (snowlord_variables.hijackFunctions && c) {
+		if (variables.hijackFunctions && c) {
 			try {
 				msg = msg.replace(/(\?\:\\r\\n|\\r|\\n)/g, "<br>");
 			} catch(e) {}
-			if (snowlord_variables.hideLogs) {
+			if (variables.hideLogs) {
                 // Stop logging
 			} else if (typeof(msg) == "number") {
 				c.innerHTML += '<div class="devConsole-container-body-console-messages"><span style="color: #bababa; user-select: none;">` + "\u26A0\uFE0F" + `' + new Date().toLocaleTimeString().split(" ")[0] + '</span><span style="color: #0015ff;"> ' + msg +'</span></div>';	
@@ -226,7 +231,7 @@
 			}
 			document.getElementById("devConsole-container-body-console-input").scrollIntoView();
 		} else {
-			snowlord_variables.log(msg);
+			variables.log(msg);
 		}
 	}
 `.trim();
@@ -398,12 +403,12 @@
 
     var consoleInput = document.getElementById("devConsole-container-body-console-input");
     consoleInput.addEventListener("keydown", function (e) {
-        if (e.keyCode == 76 && e.ctrlKey && !e.altKey && !e.shiftKey && snowlord_variables.loaded) {
+        if (e.keyCode == 76 && e.ctrlKey && !e.altKey && !e.shiftKey && variables.loaded) {
             document.getElementsByClassName("devConsole-container-body-console-text")[0].innerHTML = '<div class="devConsole-container-body-console-messages"><span style="color: #bababa; user-select: none;">⮞' + new Date().toLocaleTimeString().split(" ")[0] + ' </span><i style="color: #bababa;">Console was cleared</i></div>';
             this.value = '';
         }
 
-        if (e.keyCode == 13 && !e.ctrlKey && !e.altKey && !e.shiftKey && snowlord_variables.loaded) {
+        if (e.keyCode == 13 && !e.ctrlKey && !e.altKey && !e.shiftKey && variables.loaded) {
             e.preventDefault();
             var val = this.value.toLowerCase().replace(/\r?\n|\r/g, "");
             if (val == "clear" || val == "clear()" || val == "clear();" || val == "console.clear()" || val == "console.clear();") {
@@ -430,7 +435,7 @@ Local Storage: ${JSON.stringify(localStorage)}
                 `.trim());
                 this.value = '';
             } else if (val == "hidelogs()" || val == "hideLogs();" || val == "hidelogs();" || val == "hideLogs();") {
-                snowlord_variables.hideLogs = !snowlord_variables.hideLogs;
+                variables.hideLogs = !variables.hideLogs;
             } else {
                 try {
                     console.log(eval(this.value));
@@ -449,8 +454,8 @@ Local Storage: ${JSON.stringify(localStorage)}
 
     // Tooltip
     document.addEventListener("mousemove", function (e) {
-        tooltip = snowlord_variables.tooltip;
-        if (snowlord_variables.loaded) {
+        tooltip = variables.tooltip;
+        if (variables.loaded) {
             if (tooltip.showing) {
                 // Show tooltip
                 document.getElementsByClassName("devConsole-tooltip-container")[0].style.display = "block";
@@ -486,9 +491,9 @@ Local Storage: ${JSON.stringify(localStorage)}
     });
 
     document.getElementsByClassName("devConsole-container-nav-elementViewer")[0].addEventListener("click", function () {
-        if (snowlord_variables.loaded) {
-            snowlord_variables.tooltip.showing = !snowlord_variables.tooltip.showing;
-            console.log("Tooltip showing: " + snowlord_variables.tooltip.showing);
+        if (variables.loaded) {
+            variables.tooltip.showing = !variables.tooltip.showing;
+            console.log("Tooltip showing: " + variables.tooltip.showing);
         }
     });
 
@@ -505,7 +510,7 @@ Local Storage: ${JSON.stringify(localStorage)}
     for (let i = 0; i < elements.length; i++) {
         if (elements[i].name) {
             elements[i].addEventListener("click", function () {
-                if (snowlord_variables.loaded) {
+                if (variables.loaded) {
                     var elems = document.getElementsByClassName("devConsole-container-body")[0].children;
                     var curElem = document.getElementsByClassName(this.name)[0];
                     for (let i = 0; i < elems.length; i++) {
@@ -525,15 +530,15 @@ Local Storage: ${JSON.stringify(localStorage)}
     }
 
     document.getElementsByClassName("devConsole-container-body-exit")[0].addEventListener("click", function () {
-        if (confirm(atob("QXJlIHlvdSBzdXJlIHlvdSB3b3VsZCBsaWtlIHRvIGNsb3NlIFNub3dMb3JkJ3MgRGV2ZWxvcGVyIENvbnNvbGU/"))) {
-            document.getElementsByClassName("devConsole-container")[0].remove();
-            document.getElementsByClassName("devConsole-tooltip-container")[0].remove();
-            document.getElementsByClassName("devConsole-injectedCss")[0].remove();
-            document.getElementsByClassName("devConsole-injectedJS")[0].remove();
-            snowlord_variables.hijackFunctions = false;
-            snowlord_variables.loaded = false;
-            snowlord_variables.showing = false;
-        }
+        // if (confirm(atob("QXJlIHlvdSBzdXJlIHlvdSB3b3VsZCBsaWtlIHRvIGNsb3NlIFNub3dMb3JkJ3MgRGV2ZWxvcGVyIENvbnNvbGU/"))) {
+        document.getElementsByClassName("devConsole-container")[0].remove();
+        document.getElementsByClassName("devConsole-tooltip-container")[0].remove();
+        document.getElementsByClassName("devConsole-injectedCss")[0].remove();
+        document.getElementsByClassName("devConsole-injectedJS")[0].remove();
+        variables.hijackFunctions = false;
+        variables.loaded = false;
+        variables.showing = false;
+        // }
     });
 
     document.getElementsByClassName("devConsole-container-nav-elementEditor")[0].addEventListener("click", function () {
