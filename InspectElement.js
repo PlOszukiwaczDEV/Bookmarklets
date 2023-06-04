@@ -1,8 +1,3 @@
-var InspectElement = document.createElement("script");
-InspectElement.src = "https://cdn.jsdelivr.net/gh/PlOszukiwaczDEV/Bookmarklets@master/InspectElement.js";
-InspectElement.onload = alert("Loaded DevTools");
-document.head.appendChild(InspectElement);
-
 (() => {
     // download site info
     function downloadSiteInfo(filename, text) {
