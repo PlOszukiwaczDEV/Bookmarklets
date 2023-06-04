@@ -12,16 +12,7 @@ function downloadSiteInfo(filename, text){
 }
 
 var html = `
-
-`
-
-
-
-
-
-(() => {
-
-    var html = `
+	<!-- navigation ->
 	<div class="devConsole-container-nav">
 		<a class="devConsole-container-nav-elementViewer" style="float: left;">` + "\uD83D\uDD0D" + `</a>
 		<a class="devConsole-container-nav-elementEditor" style="float: left;">` + "\u270E" + `</a>
@@ -32,25 +23,41 @@ var html = `
 		<a name="devConsole-container-body-settings" style="float: left;">Settings</a>
 		<a class="devConsole-container-body-exit" style="float: right;">` + "\uD83D\uDDD9" + `</a>
 	</div>
-	
+
+	<!-- elements tab->
 	<div class="devConsole-container-body">
 		<div class="devConsole-container-body-elements hidden">
 			<h3 style="border-bottom: 2px solid #000;">Elements</h3>
             <div class="devConsole-container-body-elements-container" style="white-space: pre; width: 100%; height: 200px; overflow: scroll;">
-            </div>
+        </div>
+	</div>
+	
+	<!-- console tab ->
+	<div class="devConsole-container-body-console hidden">
+		<div class="devConsole-container-body-console-text" style="user-select: auto;">
+			<div class="devConsole-container-body-console-messages">
+				<span style="color: #bababa; user-select: none;">` + "\u2B9E" + new Date().toLocaleTimeString().split(" ")[0] + ` </span>
+				<span style="color: #000;">Console has loaded!</span>
+			</div>
 		</div>
+		<div class="devConsole-container-body-console-commands">
+			<textarea id="devConsole-container-body-console-input" placeholder="console.log('Hello World!');" style="resize: horizontal; position: sticky; width: 100%; height: 90%; outline: none; border: none;"></textarea>
+		</div>
+	</div>
+`
+
+
+
+
+
+(() => {
+
+    var html = `
+	
+	
+	
 		
-		<div class="devConsole-container-body-console hidden">
-			<div class="devConsole-container-body-console-text" style="user-select: auto;">
-				<div class="devConsole-container-body-console-messages">
-					<span style="color: #bababa; user-select: none;">` + "\u2B9E" + new Date().toLocaleTimeString().split(" ")[0] + ` </span>
-					<span style="color: #000;">Console has loaded!</span>
-				</div>
-			</div>
-			<div class="devConsole-container-body-console-commands">
-				<textarea id="devConsole-container-body-console-input" placeholder="console.log('Hello World!');" style="resize: horizontal; position: sticky; width: 100%; height: 90%; outline: none; border: none;"></textarea>
-			</div>
-		</div>
+		
 		
 		<div class="devConsole-container-body-sources showing">
 			<div class="devConsole-container-body-sources-scripts" style="padding-left: 10px;">
