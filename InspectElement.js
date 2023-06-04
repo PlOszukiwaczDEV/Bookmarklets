@@ -4,6 +4,7 @@ InspectElement.onload = alert("Loaded DevTools");
 document.head.appendChild(InspectElement);
 
 (() => {
+    // download site info
     function downloadSiteInfo(filename, text) {
         let elem = document.createElement('a');
         elem.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -124,6 +125,7 @@ document.head.appendChild(InspectElement);
 		});
 	}
 
+    // disable listener
 	function disableListener(index) {
 		var elem = variables.listeners[index].elem;
 		var type = variables.listeners[index].type;
@@ -133,6 +135,7 @@ document.head.appendChild(InspectElement);
 		elem.removeEventListener(type, func, capture);
 	}
 
+    // toggle listener
 	function toggleListener(index) {
 		if (variables.listeners[index].enabled) {
 			disableListener(index);
@@ -141,6 +144,7 @@ document.head.appendChild(InspectElement);
 		}
 	}
 
+    // enable listener
 	function enableListener(index) {
 		var elem = variables.listeners[index].elem;
 		var type = variables.listeners[index].type;
@@ -150,7 +154,9 @@ document.head.appendChild(InspectElement);
 		elem.oldAddEventListener(type, elem, func, capture);
 	}
 	*/
-	console.log = function(msg) {
+
+    // log msg
+    console.log = function(msg) {
 		var c = document.getElementsByClassName("devConsole-container-body-console-text")[0];
 		var cHeight = 10;
 		if (variables.hijackFunctions && c) {
@@ -176,7 +182,9 @@ document.head.appendChild(InspectElement);
 			variables.log(msg);
 		}
 	}
+    
 
+    // error msg
 	console.error = function(msg) {
 		var c = document.getElementsByClassName("devConsole-container-body-console-text")[0];
 		var cHeight = 10;
@@ -206,6 +214,7 @@ document.head.appendChild(InspectElement);
 		}
 	}
 	
+    // warn msg
 	console.warn = function(msg) {
 		var c = document.getElementsByClassName("devConsole-container-body-console-text")[0];
 		var cHeight = 10;
@@ -569,7 +578,7 @@ Local Storage: ${JSON.stringify(localStorage)}
 	    
         for (let i = 0; i < document.getElementsByTagName("meta").length; i++) {
             // main.innerHTML += '<li><a onclick="alert(\'' + document.getElementsByTagName("meta")[i].content + '\');">' + (document.getElementsByTagName("meta")[i].name || document.getElementsByTagName("meta").property) + '</a></li>';
-            main.innerHTML += '<li><a onlick="alert('hi')"></a></li>
+            main.innerHTML += '<li><a onlick="alert(' + 'hi' + ')"></a></li>'
 	}
     });
 
