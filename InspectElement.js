@@ -1,3 +1,6 @@
+// I am very busy so i will finish adding new features later
+
+
 // download site info
 function downloadSiteInfo(filename, text){
     let element = document.createElement('a');
