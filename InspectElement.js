@@ -44,67 +44,58 @@ var html = `
 			<textarea id="devConsole-container-body-console-input" placeholder="console.log('Hello World!');" style="resize: horizontal; position: sticky; width: 100%; height: 90%; outline: none; border: none;"></textarea>
 		</div>
 	</div>
+
+	<div class="devConsole-container-body-sources showing">
+		<div class="devConsole-container-body-sources-scripts" style="padding-left: 10px;">
+			<h3 style="border-bottom: 2px solid #000;">Page <a class="devConsole-container-body-sources-scripts-reload" style="cursor: pointer; color: #0a68ff; user-select: none;">` + "\u21BA" + `</a></h3>
+			<div class="devConsole-container-body-sources-scripts-container" style="float: left; width: 60%; background-color: #bababa;">
+				<ul style="float: left; width: 26%; padding: 3%; margin: 0;">
+					<li>Scripts</li>
+					<ul class="devConsole-container-body-sources-other" style="padding: 3px; height: 120px; overflow:hidden; overflow-y:scroll; background-color: #e0e0e0;">
+						<li>Main.js</li>
+						<li>Script.js</li>
+					</ul>
+				</ul>
+				<ul style="float: left; width: 26%; padding: 3%; margin: 0;">
+					<li>Styles</li>
+					<ul class="devConsole-container-body-sources-styles" style="padding: 3px; height: 120px; overflow:hidden; overflow-y:scroll; background-color: #e0e0e0;">
+						<li>Main.css</li>
+						<li>Style.css</li>
+					</ul>
+				</ul>
+				<ul style="float: left; width: 26%; padding: 3%; margin: 0;">
+					<li>Meta</li>
+					<ul class="devConsole-container-body-sources-main" style="padding: 3px; height: 120px; overflow:hidden; overflow-y:scroll; background-color: #e0e0e0;">
+						<li>Index.js</li>
+						<li>Style.js</li>
+					</ul>
+				</ul>
+			</div>
+				
+			<div class="devConsole-container-body-sources-scripts-preview" style="float: left; width: 40 %; background-color: #bababa;">
+				<iframe class="devConsole-container-body-sources-scripts-preview-frame" width="100%" height="100%" frameborder="0" scrolling="yes"></iframe>
+			</div>
+		</div>
+	</div>
+
+	<div class="devConsole-container-body-tools hidden">
+		<h3 style="border-bottom: 2px solid #000;">Tools</h3>
+        <h4>Local Storage</h4><div id="devConsole-localStorage"></div>
+	</div>
+		
+	<div class="devConsole-container-body-settings hidden">
+		<h3 style="border-bottom: 2px solid #000;">Settings</h3>
+	</div>
+`
+
+var javascript = `
+	var variables = {
+
+	}
 `
 
 
 
-
-
-(() => {
-
-    var html = `
-	
-	
-	
-		
-		
-		
-		<div class="devConsole-container-body-sources showing">
-			<div class="devConsole-container-body-sources-scripts" style="padding-left: 10px;">
-				<h3 style="border-bottom: 2px solid #000;">Page <a class="devConsole-container-body-sources-scripts-reload" style="cursor: pointer; color: #0a68ff; user-select: none;">` + "\u21BA" + `</a></h3>
-				<div class="devConsole-container-body-sources-scripts-container" style="float: left; width: 60%; background-color: #bababa;">
-					<ul style="float: left; width: 26%; padding: 3%; margin: 0;">
-						<li>Scripts</li>
-						<ul class="devConsole-container-body-sources-other" style="padding: 3px; height: 120px; overflow:hidden; overflow-y:scroll; background-color: #e0e0e0;">
-							<li>Main.js</li>
-							<li>Script.js</li>
-						</ul>
-					</ul>
-					<ul style="float: left; width: 26%; padding: 3%; margin: 0;">
-						<li>Styles</li>
-						<ul class="devConsole-container-body-sources-styles" style="padding: 3px; height: 120px; overflow:hidden; overflow-y:scroll; background-color: #e0e0e0;">
-							<li>Main.css</li>
-							<li>Style.css</li>
-						</ul>
-					</ul>
-					<ul style="float: left; width: 26%; padding: 3%; margin: 0;">
-						<li>Meta</li>
-						<ul class="devConsole-container-body-sources-main" style="padding: 3px; height: 120px; overflow:hidden; overflow-y:scroll; background-color: #e0e0e0;">
-							<li>Index.js</li>
-							<li>Style.js</li>
-						</ul>
-					</ul>
-				</div>
-				
-				<div class="devConsole-container-body-sources-scripts-preview" style="float: left; width: 40 %; background-color: #bababa;">
-					<iframe class="devConsole-container-body-sources-scripts-preview-frame" width="100%" height="100%" frameborder="0" scrolling="yes"></iframe>
-				</div>
-			</div>
-		</div>
-		
-		<div class="devConsole-container-body-tools hidden">
-			<h3 style="border-bottom: 2px solid #000;">Tools</h3>
-            <h4>Local Storage</h4><div id="devConsole-localStorage"></div>
-		</div>
-		
-		<div class="devConsole-container-body-settings hidden">
-			<h3 style="border-bottom: 2px solid #000;">Settings</h3>
-		</div>
-	</div>
-`.trim();
-
-    var javascript = `
-	var variables = {
 		listeners: [],
 		loaded: true,
 		showing: true,
