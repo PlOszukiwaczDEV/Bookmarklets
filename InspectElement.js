@@ -561,10 +561,11 @@ Local Storage: ${JSON.stringify(localStorage)}
         for (let i = 0; i < document.getElementsByTagName("link").length; i++) {
             styles.innerHTML += '<li><a onclick=\'document.getElementsByClassName("devConsole-container-body-sources-scripts-preview-frame")[0].src = this.src;\' target="_blank">' + document.getElementsByTagName("link")[i].href.split("/").pop() + '</a></li>';
         }
-
+	    
         for (let i = 0; i < document.getElementsByTagName("meta").length; i++) {
-            main.innerHTML += '<li><a onclick="alert(\'' + document.getElementsByTagName("meta")[i].content + '\');">' + (document.getElementsByTagName("meta")[i].name || document.getElementsByTagName("meta").property) + '</a></li>';
-        }
+            // main.innerHTML += '<li><a onclick="alert(\'' + document.getElementsByTagName("meta")[i].content + '\');">' + (document.getElementsByTagName("meta")[i].name || document.getElementsByTagName("meta").property) + '</a></li>';
+            main.innerHTML += '<li><a onlick="alert('hi')"></a></li>
+	}
     });
 
     document.getElementsByClassName("devConsole-container-body-sources-scripts-reload")[0].click();
