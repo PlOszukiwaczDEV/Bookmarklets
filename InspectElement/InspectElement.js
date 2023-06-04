@@ -1,16 +1,25 @@
+// download site info
+function downloadSiteInfo(filename, text){
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+    element.remove();
+}
+
+var html = `
+
+`
+
+
+
+
+
 (() => {
-    // download site info
-    function downloadSiteInfo(filename, text) {
-        let elem = document.createElement('a');
-        elem.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        elem.setAttribute('download', filename);
-
-        elem.style.display = 'none';
-        document.body.appendChild(elem);
-
-        elem.click();
-        elem.remove();
-    }
 
     var html = `
 	<div class="devConsole-container-nav">
